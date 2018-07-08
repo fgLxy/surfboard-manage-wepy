@@ -1,0 +1,100 @@
+<wxs src="../wxs/obj.wxs" module="obj"/>
+
+  <view class="page _c5b6f12">
+    <view class="page__hd _c5b6f12">
+        <view class="page__title _c5b6f12">{{obj.val(msg,'return.page')}}</view>
+    </view>
+    <view class="page__bd _c5b6f12">
+      <view class="weui-cells__title _c5b6f12">浪板信息</view>
+      <view class="weui-cells weui-cells_after-title _c5b6f12">
+          
+  <view class="weui-cell weui-cell_input _8d989d0">
+      <view class="weui-cell__hd _8d989d0"  wx:if="{{$idInput$label}}">
+          <view class="weui-label _8d989d0">{{$idInput$label}}</view>
+      </view>
+      <view class="weui-cell__bd _8d989d0">
+          <input type="{{$idInput$type}}" class="weui-input _8d989d0" bindinput="$idInput$bindInputHandler" placeholder="{{$idInput$placeholder}}" value="{{$idInput$value}}" disabled="{{$idInput$disabled}}"/>
+      </view>
+  </view>
+          
+  <view class="weui-cell weui-cell_input _8d989d0">
+      <view class="weui-cell__hd _8d989d0"  wx:if="{{$priceInput$label}}">
+          <view class="weui-label _8d989d0">{{$priceInput$label}}</view>
+      </view>
+      <view class="weui-cell__bd _8d989d0">
+          <input type="{{$priceInput$type}}" class="weui-input _8d989d0" bindinput="$priceInput$bindInputHandler" placeholder="{{$priceInput$placeholder}}" value="{{$priceInput$value}}" disabled="{{$priceInput$disabled}}"/>
+      </view>
+  </view>
+          
+  <view class="weui-cell weui-cell_input _8d989d0">
+      <view class="weui-cell__hd _8d989d0"  wx:if="{{$typeInput$label}}">
+          <view class="weui-label _8d989d0">{{$typeInput$label}}</view>
+      </view>
+      <view class="weui-cell__bd _8d989d0">
+          <input type="{{$typeInput$type}}" class="weui-input _8d989d0" bindinput="$typeInput$bindInputHandler" placeholder="{{$typeInput$placeholder}}" value="{{$typeInput$value}}" disabled="{{$typeInput$disabled}}"/>
+      </view>
+  </view>
+          
+  <view class="weui-cell weui-cell_input _8d989d0">
+      <view class="weui-cell__hd _8d989d0"  wx:if="{{$outTimeInput$label}}">
+          <view class="weui-label _8d989d0">{{$outTimeInput$label}}</view>
+      </view>
+      <view class="weui-cell__bd _8d989d0">
+          <input type="{{$outTimeInput$type}}" class="weui-input _8d989d0" bindinput="$outTimeInput$bindInputHandler" placeholder="{{$outTimeInput$placeholder}}" value="{{$outTimeInput$value}}" disabled="{{$outTimeInput$disabled}}"/>
+      </view>
+  </view>
+          
+  <view class="weui-cell weui-cell_input _8d989d0">
+      <view class="weui-cell__hd _8d989d0"  wx:if="{{$returnTimeInput$label}}">
+          <view class="weui-label _8d989d0">{{$returnTimeInput$label}}</view>
+      </view>
+      <view class="weui-cell__bd _8d989d0">
+          <input type="{{$returnTimeInput$type}}" class="weui-input _8d989d0" bindinput="$returnTimeInput$bindInputHandler" placeholder="{{$returnTimeInput$placeholder}}" value="{{$returnTimeInput$value}}" disabled="{{$returnTimeInput$disabled}}"/>
+      </view>
+  </view>
+          
+  <view class="weui-cell weui-cell_input _8d989d0">
+      <view class="weui-cell__hd _8d989d0"  wx:if="{{$timeInput$label}}">
+          <view class="weui-label _8d989d0">{{$timeInput$label}}</view>
+      </view>
+      <view class="weui-cell__bd _8d989d0">
+          <input type="{{$timeInput$type}}" class="weui-input _8d989d0" bindinput="$timeInput$bindInputHandler" placeholder="{{$timeInput$placeholder}}" value="{{$timeInput$value}}" disabled="{{$timeInput$disabled}}"/>
+      </view>
+  </view>
+          
+  <view class="weui-cell weui-cell_input _8d989d0">
+      <view class="weui-cell__hd _8d989d0"  wx:if="{{$totalPriceInput$label}}">
+          <view class="weui-label _8d989d0">{{$totalPriceInput$label}}</view>
+      </view>
+      <view class="weui-cell__bd _8d989d0">
+          <input type="{{$totalPriceInput$type}}" class="weui-input _8d989d0" bindinput="$totalPriceInput$bindInputHandler" placeholder="{{$totalPriceInput$placeholder}}" value="{{$totalPriceInput$value}}" disabled="{{$totalPriceInput$disabled}}"/>
+      </view>
+  </view>
+          
+  <view class="weui-cell weui-cell_input _8d989d0">
+      <view class="weui-cell__hd _8d989d0"  wx:if="{{$actualCollectionInput$label}}">
+          <view class="weui-label _8d989d0">{{$actualCollectionInput$label}}</view>
+      </view>
+      <view class="weui-cell__bd _8d989d0">
+          <input type="{{$actualCollectionInput$type}}" class="weui-input _8d989d0" bindinput="$actualCollectionInput$bindInputHandler" placeholder="{{$actualCollectionInput$placeholder}}" value="{{$actualCollectionInput$value}}" disabled="{{$actualCollectionInput$disabled}}"/>
+      </view>
+  </view>
+      </view>
+      
+      <view class="weui-cells__title _c5b6f12">找零</view>
+      <view class="weui-cells weui-cells_after-title _c5b6f12">
+          
+  <view class="weui-cell weui-cell_input _8d989d0">
+      <view class="weui-cell__hd _8d989d0"  wx:if="{{$changeInput$label}}">
+          <view class="weui-label _8d989d0">{{$changeInput$label}}</view>
+      </view>
+      <view class="weui-cell__bd _8d989d0">
+          <input type="{{$changeInput$type}}" class="weui-input _8d989d0" bindinput="$changeInput$bindInputHandler" placeholder="{{$changeInput$placeholder}}" value="{{$changeInput$value}}" disabled="{{$changeInput$disabled}}"/>
+      </view>
+  </view>
+      </view>
+      <view class="weui-btn-area _c5b6f12">
+          <button class="weui-btn _c5b6f12" type="primary" bindtap="showTopTips">确定</button>
+      </view>
+    </view>
+  </view>

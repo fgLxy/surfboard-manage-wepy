@@ -1,0 +1,2 @@
+@import "./../components/weRadioInput.wxss";
+@import "./../components/weTextInput.wxss";

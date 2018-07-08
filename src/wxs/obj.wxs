@@ -1,0 +1,8 @@
+module.exports = {
+	val: function(obj, key) {
+		return obj ? obj[key] : '';
+	},
+	func: function(func, param) {
+		return func ? func(param) : ''
+	}
+}

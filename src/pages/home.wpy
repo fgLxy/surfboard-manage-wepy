@@ -1,0 +1,121 @@
+<style lang="less" scoped>
+.weui-flex{
+    align-items: center;
+}
+.weui-cells{
+    margin-top: 0;
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: .3s;
+    &:before, &:after{
+        display: none;
+    }
+    &_show{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.weui-cell{
+    &:before{
+        right: 15px;
+    }
+}
+
+.kind-list{}
+.kind-list__item{
+    margin: 10px 0;
+    background-color: #FFFFFF;
+    border-radius: 2px;
+    overflow: hidden;
+    &:first-child{
+        margin-top: 0;
+    }
+}
+.kind-list__img{
+    width: 30px;
+    height: 30px;
+}
+
+.kind-list__item-hd{
+    padding: 20px;
+    transition: opacity .3s;
+    &_show{
+        opacity: .4;
+    }
+}
+.kind-list__item-bd{
+    height: 0;
+    overflow: hidden;
+    &_show{
+        height: auto;
+    }
+}
+</style>
+
+<template>
+  <view class="container">
+    <view class="langBtn">
+      <button id="en" size="mini" hover-class="button-hover" @tap="islang">english</button>
+      <button id="zh" size="mini" hover-class="button-hover" @tap="islang">中文</button>
+    </view>
+    <view class="nav">
+      <block wx:for="{{pages}}" wx:for-item="page" wx:key="*this">
+          <navigator url="{{page}}" class="weui-cell weui-cell_access">
+              <view class="weui-cell__bd">{{obj.val(msg, page+'.page')}}</view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+          </navigator>
+      </block>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import api from '../api/api.js'
+  import tip from '../utils/tip.js'
+  import obj from '../wxs/obj.wxs'
+  import {getLang, setLang} from '../lang/index.js'
+
+  export default class Home extends wepy.page {
+
+    components = {
+    }
+
+    data = {
+      lang: 'en',
+      pages: ['rent', 'return', 'sell', 'fix', 'state']
+    }
+
+    computed = {
+      msg: function() {
+        return this.lang === 'en' ? this.$parent.globalData.en : this.$parent.globalData.zh;
+      }
+    }
+
+    wxs = {
+      obj
+    }
+
+    watch = {
+      'lang': function(newValue) {
+        setLang(this.lang)
+      }
+    }
+
+    methods = {
+      islang(e) {
+        this.$emit('lang-change', e.target.id);
+      }
+    }
+
+    events = {
+      'lang-change': function(newLang) {
+        this.lang = newLang
+      }
+    }
+
+    onLoad() {
+      this.lang = getLang()
+    }
+  }
+</script>

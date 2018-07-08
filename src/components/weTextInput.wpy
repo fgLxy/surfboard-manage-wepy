@@ -1,0 +1,47 @@
+<style lang="less" scoped>
+
+</style>
+
+<template>
+  <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd" wx:if="{{label}}">
+          <view class="weui-label">{{label}}</view>
+      </view>
+      <view class="weui-cell__bd">
+          <input type="{{type}}" class="weui-input" bindinput="bindInputHandler" placeholder="{{placeholder}}" value="{{value}}" disabled="{{disabled}}"/>
+      </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class WeTextInput extends wepy.component {
+  	props = {
+  		label: String,
+  		placeholder: String,
+      disabled: String,
+      onChangeEvent: String,
+      type: {
+        type: String,
+        required: false,
+        default: 'text'
+      },
+      value: {
+        type: String,
+        twoWay: true
+      }
+  	}
+
+    methods = {
+      bindInputHandler: function(val) {
+        if(this.onChangeEvent) {
+          this.$emit(this.onChangeEvent, val.detail.value);
+        }
+      }
+    }
+
+  	onLoad(){
+  	}
+  }
+</script>

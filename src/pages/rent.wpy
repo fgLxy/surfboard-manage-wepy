@@ -1,0 +1,102 @@
+<style lang="less" scoped>
+</style>
+
+<template>
+  <view class="page">
+    <view class="page__hd">
+        <view class="page__title">{{obj.val(msg,'rent.page')}}</view>
+    </view>
+    <view class="page__bd">
+      <view class="weui-cells__title">浪板信息</view>
+      <view class="weui-cells weui-cells_after-title">
+          <idInput :label.sync="idLabel" :value.sync="id" disabled="true"></idInput>
+          <priceInput :label.sync="priceLabel" :placeholder.sync="pricePlaceholder" :value.sync="price" disabled="true"></priceInput>
+          <timeInput type="number" :label.sync="timeLabel" :placeholder.sync="timePlaceholder" :value.sync="time"></timeInput>
+      </view>
+      <typeInput :label.sync="typeLabel" :placeholder.sync="typePlaceholder" :radioItems.sync="typeEnums" :value.sync="type"></typeInput>
+      <view class="weui-cells__title">顾客信息</view>
+      <view class="weui-cells weui-cells_after-title">
+          <nameInput :label.sync="nameLabel" :placeholder.sync="namePlaceholder" :value.sync="name"></nameInput>
+          <nationalityInput :label.sync="nationalityLabel" :placeholder.sync="nationalityPlaceholder" :value.sync="nationality"></nationalityInput>
+          <passportInput :label.sync="passportLabel" :placeholder.sync="passportPlaceholder" :value.sync="passport"></passportInput>
+          <phoneInput :label.sync="phoneLabel" :placeholder.sync="phonePlaceholder" :value.sync="phone"></phoneInput>
+          <emailInput :label.sync="emailLabel" :placeholder.sync="emailPlaceholder" :value.sync="email"></emailInput>
+      </view>
+      <view class="weui-btn-area">
+          <button class="weui-btn" type="primary" bindtap="showTopTips">确定</button>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import api from '../api/api.js'
+  import tip from '../utils/tip.js'
+  import WeTextInput from '../components/weTextInput'
+  import WeRadioInput from '../components/weRadioInput'
+  import obj from '../wxs/obj.wxs'
+  import {getLang, setLang, computedGen} from '../lang/index.js'
+
+  export default class Rent extends wepy.page {
+    components = {
+      idInput: WeTextInput,
+      priceInput: WeTextInput,
+      typeInput: WeRadioInput,
+      timeInput: WeTextInput,
+      nameInput: WeTextInput,
+      nationalityInput: WeTextInput,
+      passportInput: WeTextInput,
+      phoneInput: WeTextInput,
+      emailInput: WeTextInput,
+    }
+
+    data = {
+      lang: 'en',
+      id: '1768S180623_0101900001',
+      type: 'rent.type.day',
+      time: '',
+      price: '300',
+      name: '',
+      nationality: '',
+      passport: '',
+      phone: '',
+      email: ''
+    }
+
+    computed = Object.assign({
+      msg: function() {
+        return this.lang === 'en' ? this.$parent.globalData.en : this.$parent.globalData.zh;
+      },
+      typeEnums: function() {
+        return this.lang && [{
+        name: this.msg ? this.msg['rent.type.day'] : '',
+        value: 'rent.type.day'
+      }, {
+        name: this.msg ? this.msg['rent.type.hour'] : '',
+        value: 'rent.type.hour'
+      }];
+      }
+    }, computedGen('rent', ['id', 'price', 'type', 'time', 'name', 'nationality', 'passport', 'phone', 'email']))
+
+    wxs = {
+      obj
+    }
+
+    watch = {
+    }
+
+    methods = {
+    }
+
+    events = {
+      'lang-change': function(newLang) {
+        this.lang = newLang
+      }
+    }
+
+    onLoad() {
+      this.lang = getLang()
+    }
+  }
+</script>

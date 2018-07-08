@@ -1,0 +1,110 @@
+<style lang="less" scoped>
+</style>
+
+<template>
+  <view class="page">
+    <view class="page__hd">
+        <view class="page__title">{{obj.val(msg,'return.page')}}</view>
+    </view>
+    <view class="page__bd">
+      <view class="weui-cells__title">浪板信息</view>
+      <view class="weui-cells weui-cells_after-title">
+          <idInput :label.sync="idLabel" value="1768S180623_0101900001" disabled="true"></idInput>
+          <priceInput :label.sync="priceLabel" value="300" disabled="true"></priceInput>
+          <typeInput :label.sync="typeLabel" :value.sync="_type" disabled="true"></typeInput>
+          <outTimeInput :label.sync="outTimeLabel" :value.sync="outTime" disabled="true"></outTimeInput>
+          <returnTimeInput :label.sync="returnTimeLabel" :value.sync="returnTime" disabled="true"></returnTimeInput>
+          <timeInput :label.sync="timeLabel" :value.sync="time" disabled="true"></timeInput>
+          <totalPriceInput :label.sync="totalPriceLabel" :value.sync="totalPrice" disabled="true"></totalPriceInput>
+          <actualCollectionInput :label.sync="actualCollectionLabel" 
+          :placeholder.sync="actualCollectionPlaceholder" 
+          :value.sync="actualCollection" 
+          onChangeEvent="onActualCollectionChange"></actualCollectionInput>
+      </view>
+      
+      <view class="weui-cells__title">找零</view>
+      <view class="weui-cells weui-cells_after-title">
+          <changeInput :label.sync="changeLabel" :value.sync="change" disabled="true"></changeInput>
+      </view>
+      <view class="weui-btn-area">
+          <button class="weui-btn" type="primary" bindtap="showTopTips">确定</button>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import api from '../api/api.js'
+  import tip from '../utils/tip.js'
+  import WeTextInput from '../components/weTextInput'
+  import obj from '../wxs/obj.wxs'
+  import {getLang, setLang, computedGen} from '../lang/index.js'
+
+  export default class Return extends wepy.page {
+    components = {
+      idInput: WeTextInput,
+      priceInput: WeTextInput,
+      typeInput: WeTextInput,
+      outTimeInput: WeTextInput,
+      returnTimeInput: WeTextInput,
+      timeInput: WeTextInput,
+      totalPriceInput: WeTextInput,
+      actualCollectionInput: WeTextInput,
+      changeInput: WeTextInput
+    }
+
+    data = {
+      lang: 'en',
+      id: '1768S180623_0101900001',
+      time: '3',
+      price: '300',
+      type: 'return.type.day',
+      outTime: '20180620 AM 10:00',
+      returnTime: '20180620 PM 01:00',
+      time: '3',
+      totalPrice: '900',
+      actualCollection: '234',
+    }
+
+    computed = Object.assign({
+      msg: function() {
+        return this.lang === 'en' ? this.$parent.globalData.en : this.$parent.globalData.zh;
+      },
+      _type: function() {
+        return this.msg[this.type]
+      },
+      change: function() {
+        console.log(this.actualCollection*1 - this.totalPrice*1);
+        return "" + (this.actualCollection*1 - this.totalPrice*1);
+      }
+    }, computedGen('return', ['id', 'price', 'type', 'outTime', 'returnTime', 'time', 'totalPrice', 'actualCollection', 'change']))
+
+    wxs = {
+      obj
+    }
+
+    watch = {
+      'actualCollection': function(newVal) {
+        console.log(newVal)
+      }
+    }
+
+    methods = {
+    }
+
+    events = {
+      'lang-change': function(newLang) {
+        this.lang = newLang
+      },
+      'onActualCollectionChange': function(value) {
+        console.log(value);
+        this.actualCollection = value;
+      }
+    }
+
+    onLoad() {
+      this.lang = getLang()
+    }
+  }
+</script>
